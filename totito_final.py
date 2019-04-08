@@ -1,13 +1,57 @@
-import colorsys
+import colorama
+from colorama import Fore,Back , Style
+from colorama import init
+import random
+
+import os
+init()
+os.system("color 05")
+
 tabla = ["-","-","-",
         "-","-","-",
         "-","-","-"]
 
+
+compu_nombre1 = "Perry el ornitorrinco"
+compu_nombre2 = "Aquiles Brinco"
+compu_nombre3 = "Nori Navas"
+compu_nombre4 = "Aquiles Pinto"
+compu_nombre5 = "Alan Brito"
+compu_nombre6 = "Elvis Cocho"
+compu_nombre7 = "Elsa Pito"
+compu_nombre8 = "Sor Rita"
+compu_nombre9 = "Soila Lechuga de la Torre"
+compu_nombre10 = "Esvin Disel"
+
 juego_activo = True
 ganador = None
 jugador_activo = "X"
-xi = input("Ingrese el nombre del jugador 1: \n")
-yi = input("Ingrese el nombre del jugador 2: \n")
+
+x = random.randint(1,10)
+if x == 1 :
+    compu_nombre = compu_nombre1
+elif x == 2:
+    compu_nombre = compu_nombre2
+elif x == 3:
+    compu_nombre = compu_nombre3
+elif x == 4:
+    compu_nombre = compu_nombre4
+elif x == 5:
+    compu_nombre = compu_nombre5
+elif x == 6:
+    compu_nombre = compu_nombre6
+elif x == 7:
+    compu_nombre = compu_nombre7
+elif x == 8:
+    compu_nombre = compu_nombre8
+elif x == 9:
+    compu_nombre = compu_nombre9
+elif x == 10:
+    compu_nombre = compu_nombre10
+
+
+
+
 
 def mostratrabla():
     print(tabla[0] + " | " + tabla[1] + " | " + tabla[2])
@@ -17,8 +61,8 @@ def mostratrabla():
 def jugar():
     #mostrar la tabla
     mostratrabla()
-    global x
-    global y 
+    global xi
+    global yi 
 
     while juego_activo:
         turnos(jugador_activo)
@@ -50,19 +94,10 @@ def jugar_misere():
     elif ganador == None:
         print("Empate")
         
-        
-
-
-
-
-
-
-
-
-    
+         
 def turnos(jugador):
     print(jugador + " turno")
-    pos = input(" eliga una posicion de 1 - 9: ")
+    pos = input(Fore.LIGHTBLUE_EX +  " eliga una posicion de 1 - 9: ")
     # le resto 1 a la posicion porque va de 0 a 8 pero para que sea más facil de visualizar va de 1 a 9
     valid = False
     #este while verifica si el input está en rango, verifica si el espacio está vacio y si lo está, cambia a true y sale del loop 
@@ -84,6 +119,22 @@ def turnos(jugador):
 
     mostratrabla()
 
+def jugar_compu():
+    mostratrabla()
+    global xi
+    global yi
+
+
+    while juego_activo:
+        turnos(jugador_activo)
+
+        revision_game_over()
+
+              
+    if ganador == 'X' or ganador == 'O':
+        print(ganador + " ganó")
+    elif ganador == None:
+        print("Empate")
 
 def revision_game_over():
     check_if_ganador()
@@ -172,7 +223,6 @@ def revisar_diagonales():
 
 
 
-
 def check_if_empate():
     global juego_activo
     #revisa si hay un "-" en el tablero y si lo hay significa que aun no está la tabla llena y no puede haber empate
@@ -180,6 +230,7 @@ def check_if_empate():
         juego_activo = False
 
     return
+
 
 def cambio_turno():
 
@@ -197,15 +248,32 @@ def cambio_turno():
 
 
 print("Bienvenido a Totito!")
-x = int(input("Qué modo de juego desea jugar? \n(1)Modo jugador vs jugador: \n(2) Modo jugador vs jugador misere:  \n(3)Modo jugador vs computadora: \n"))
+x = int(input( Fore.CYAN + "Qué modo de juego desea jugar? \n(1)Modo jugador vs jugador: \n(2) Modo jugador vs jugador misere:  \n(3)Modo jugador vs computadora: \n"))
 
 if x == 1:
+    xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
+    yi = input(Fore.YELLOW  + "Ingrese el nombre del jugador 2: \n")
    
     print(xi + " será X")
     print(yi + " será O")
     jugar()
 
 elif x == 2:
+    xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
+    yi = input(Fore.YELLOW  + "Ingrese el nombre del jugador 2: \n")
     print("El objetivo de este modo de juego es lograr que el oponente junte 3 en fila,columna o en diagonal, suerte ;) !")
+    print(xi + " será X")
+    print(yi + " será O")
     jugar_misere()
+
+elif x == 3:
+    xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
+    print(xi + " será X")
+    print(Fore.BLUE +  compu_nombre + " Será O")
+   
+    print(Fore.LIGHTRED_EX + "aun no he programado esto xd")
+
     
+
+
+
