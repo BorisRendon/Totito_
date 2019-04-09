@@ -96,29 +96,34 @@ def jugar_misere():
         
          
 def turnos(jugador):
-    print(jugador + " turno")
-    pos = input(Fore.LIGHTBLUE_EX +  " eliga una posicion de 1 - 9: ")
-    # le resto 1 a la posicion porque va de 0 a 8 pero para que sea más facil de visualizar va de 1 a 9
-    valid = False
-    #este while verifica si el input está en rango, verifica si el espacio está vacio y si lo está, cambia a true y sale del loop 
-    while not valid:
+    print(jugador + "turno")
+    if jugador == 'O' and x == 3:
+        for i in range(1, len(tabla)-1):
+            if tabla[i] == "-":
+                tabla[i] = 'O'
+                break
+    else:            
+        pos = input(Fore.LIGHTBLUE_EX +  " eliga una posicion de 1 - 9: ")
+        # le resto 1 a la posicion porque va de 0 a 8 pero para que sea más facil de visualizar va de 1 a 9
+        valid = False
+        #este while verifica si el input está en rango, verifica si el espacio está vacio y si lo está, cambia a true y sale del loop 
+        while not valid:
 
-        while pos not in ["1" , "2", "3" , "4", "5" , "6", "7" , "8", "9"]:
-            pos = input("Input inválido, ingrese un número (1-9)")
+            while pos not in ["1" , "2", "3" , "4", "5" , "6", "7" , "8", "9"]:
+                pos = input("Input inválido, ingrese un número (1-9)")
 
 
-        pos = int(pos) - 1
+            pos = int(pos) - 1
 
-        if tabla[pos] == "-":
-            valid = True
-        else:
-            print("El espacio ya está ocupado, intente de nuevo")
+            if tabla[pos] == "-":
+                valid = True
+                tabla[pos] = jugador
+            else:
+                print("El espacio ya está ocupado, intente de nuevo")
             
 
-    tabla[pos]= jugador
-
     mostratrabla()
-
+#########################################################################################################################
 def jugar_compu():
     mostratrabla()
     global xi
@@ -126,7 +131,11 @@ def jugar_compu():
 
 
     while juego_activo:
+        jugador_activo = 'X'
         turnos(jugador_activo)
+        jugador_activo = 'O'
+        turnos(jugador_activo)
+      #  cambio_turno_compu(tabla)
 
         revision_game_over()
 
@@ -135,7 +144,14 @@ def jugar_compu():
         print(ganador + " ganó")
     elif ganador == None:
         print("Empate")
+###########################################################################################################################
 
+
+        
+
+
+   
+##################################################################################################################################
 def revision_game_over():
     check_if_ganador()
     check_if_empate()
@@ -270,6 +286,7 @@ elif x == 3:
     xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
     print(xi + " será X")
     print(Fore.BLUE +  compu_nombre + " Será O")
+    jugar_compu()
    
     print(Fore.LIGHTRED_EX + "aun no he programado esto xd")
 
