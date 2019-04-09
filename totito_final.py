@@ -11,7 +11,7 @@ tabla = ["-","-","-",
         "-","-","-",
         "-","-","-"]
 
-
+#lista de nombres para la computadora, se asignan de manera aleatoria con un random
 compu_nombre1 = "Perry el ornitorrinco"
 compu_nombre2 = "Aquiles Brinco"
 compu_nombre3 = "Nori Navas"
@@ -19,12 +19,14 @@ compu_nombre4 = "Aquiles Pinto"
 compu_nombre5 = "Alan Brito"
 compu_nombre6 = "Elvis Cocho"
 compu_nombre7 = "Elsa Pito"
-compu_nombre8 = "Sor Rita"
+compu_nombre8 = "Bad Bunny"
 compu_nombre9 = "Soila Lechuga de la Torre"
 compu_nombre10 = "Esvin Disel"
 
+#cuando lo cambio a false se acaba el juego
 juego_activo = True
 ganador = None
+#El jugador 1 siempre será X
 jugador_activo = "X"
 
 x = random.randint(1,10)
@@ -48,9 +50,6 @@ elif x == 9:
     compu_nombre = compu_nombre9
 elif x == 10:
     compu_nombre = compu_nombre10
-
-
-
 
 
 def mostratrabla():
@@ -96,7 +95,8 @@ def jugar_misere():
         
          
 def turnos(jugador):
-    print(jugador + "turno")
+    print(jugador + " turno")
+    #aqui hago el algoritmo para jugar vs la computadora, va a revisar los espacios vacios y despues que X juegue se colocará O  en el primer lugar que encuentre
     if jugador == 'O' and x == 3:
         for i in range(1, len(tabla)-1):
             if tabla[i] == "-":
@@ -123,7 +123,7 @@ def turnos(jugador):
             
 
     mostratrabla()
-#########################################################################################################################
+
 def jugar_compu():
     mostratrabla()
     global xi
@@ -144,14 +144,8 @@ def jugar_compu():
         print(ganador + " ganó")
     elif ganador == None:
         print("Empate")
-###########################################################################################################################
 
 
-        
-
-
-   
-##################################################################################################################################
 def revision_game_over():
     check_if_ganador()
     check_if_empate()
@@ -263,15 +257,18 @@ def cambio_turno():
     return
 
 
-print("Bienvenido a Totito!")
+print(Fore.LIGHTGREEN_EX + "Bienvenido a Totito!")
+print(Fore.LIGHTGREEN_EX + "Tres modos de juego")
+print()
+print()
 x = int(input( Fore.CYAN + "Qué modo de juego desea jugar? \n(1)Modo jugador vs jugador: \n(2) Modo jugador vs jugador misere:  \n(3)Modo jugador vs computadora: \n"))
 
 if x == 1:
     xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
     yi = input(Fore.YELLOW  + "Ingrese el nombre del jugador 2: \n")
    
-    print(xi + " será X")
-    print(yi + " será O")
+    print(xi +   " será X")
+    print(yi +  " será O")
     jugar()
 
 elif x == 2:
@@ -285,10 +282,10 @@ elif x == 2:
 elif x == 3:
     xi = input(Fore.MAGENTA +  "Ingrese el nombre del jugador 1: \n")
     print(xi + " será X")
-    print(Fore.BLUE +  compu_nombre + " Será O")
+    print(Fore.WHITE +  compu_nombre + " Será O")
     jugar_compu()
    
-    print(Fore.LIGHTRED_EX + "aun no he programado esto xd")
+    
 
     
 
